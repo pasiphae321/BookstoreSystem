@@ -1,7 +1,7 @@
 <?php
-$DSN = "mysql:host=localhost;dbname=BookstoreSystem";
-$username = "rabbit";
-$password = "1433223";
+$DSN = "mysql:host=127.0.0.1;dbname=bookstore_system";
+$username = "test2";
+$password = "ceshi";
 
 try
 {

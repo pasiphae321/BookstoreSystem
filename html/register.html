@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="icon" type="image/x-icon" href="/image/planet.png">
+    <link rel="stylesheet" type="text/css" href="/css/mercury.css">
+</head>
+<body>
+    <div class="container">
+        <h4>注册</h4>
+        <form id="register_form">
+            <label for="username">用户名:</label>
+            <input type="text" id="username" required>
+            <label for="password">密码:</label>
+            <input type="password" id="password" required>
+            <label for="password">邮箱:</label>
+            <input type="email" id="email" required>
+            <button type="submit">注册</button>
+        </form>
+        <a href="/login.html">登录</a>
+    </div>
+    <script type="text/javascript">
+        document.getElementById("register_form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value;
+
+            fetch("/v1/user/register", {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify({
+                    "username": username,
+                    "password": password,
+                    "email": email,
+                })
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                alert(dafunction(book)ta.message);
+                if (data.status === 0) {
+                    window.location.href = "/login.html";
+                }
+                else if (data.status === 1) {
+                    document.getElementById("username").value = "";
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        });
+    </script>
+</body>
+</html>

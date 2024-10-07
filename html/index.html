@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link rel="icon" type="image/x-icon" href="/image/planet.png">
+    <link rel="stylesheet" type="text/css" href="/css/venus.css">
+</head>
+<body>
+    <div class="centered">
+        <h3>欢迎您,<span id="username"></span></h3>
+        <a href="/v1/user/logout" id="link_one">登出</a>
+        <a href="/book_search.html">书籍查询</a>
+        <a href="/change_password.html">修改密码</a>
+        <a href="/user_suggest.html">用户建议</a>
+    </div>
+
+    <script type="text/javascript" src="/js/username.js"></script>
+    <script type="text/javascript">
+        document.getElementById("link_one").addEventListener("click", function(event) {
+            event.preventDefault();
+            fetch("/v1/user/logout")
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if (data.status === 0) {
+                    alert(data.message);
+                }
+                window.location.href = "/login.html";
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+}
+.centered {
+    text-align: center;
+}
+.centered a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #007BFF;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.centered a:hover {
+    background-color: #0056b3;
+}
+

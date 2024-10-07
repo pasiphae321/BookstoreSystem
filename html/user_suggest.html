@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户建议</title>
+    <link rel="icon" type="image/x-icon" href="/image/planet.png">
+    <link rel="stylesheet" type="text/css" href="/css/mars.css">
+</head>
+<body>
+    <div class="container">
+        <h3>当前用户:<span id="username"></span></h3>
+        <a href="index.html">返回主页</a>
+        <div class="search-container">
+            <form id="suggest_form">
+                <label>请添加您的建议:</label>
+                <input type="text" id="content" required>
+                <button type="submit">添加</button>
+            </form>
+        </div>
+        <table class="result-table" id="suggestion_table">
+            <thead>
+                <tr><th>用户</th><th>建议</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <h3 id="strawberry"></h3>
+    </div>
+
+    <script type="text/javascript" src="/js/username.js"></script>
+    <script type="text/javascript">
+        function GetSuggestions() {
+            fetch("/v1/suggestion/fetch")
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                const strawberry = document.getElementById("strawberry");
+                const TableBody = document.getElementById("suggestion_table").getElementsByTagName("tbody")[0];
+                if (data.status === 0) {
+                    strawberry.textContent = "";
+                    TableBody.innerHTML = "";
+                    data.result.forEach(function(suggestion1) {
+                        const row = document.createElement("tr");
+                        const UsernameCell = document.createElement("td");
+                        UsernameCell.textContent = suggestion1.username;
+                        row.appendChild(UsernameCell);
+                        const ContentCell = document.createElement("td");
+                        ContentCell.textContent = suggestion1.content;
+                        row.appendChild(ContentCell);
+                        TableBody.appendChild(row);
+                    });
+                }
+                else if (data.status === 1) {
+                    TableBody.innerHTML = "";
+                    strawberry.textContent = data.message;
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        }
+
+        GetSuggestions();
+        document.getElementById("suggest_form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const suggestion = document.getElementById("content").value;
+
+            fetch("/v1/suggestion/add", {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json"
+                },
+                "body": JSON.stringify({
+                    "content": content
+                })
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                alert(data.message);
+                if (data.status === 0) {
+                    GetSuggestions();
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+        });
+    </script>
+</body>
+</html>
