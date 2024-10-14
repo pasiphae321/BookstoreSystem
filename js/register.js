@@ -4,27 +4,33 @@ document.getElementById("register_form").addEventListener("submit", function(eve
     const password = document.getElementById("password").value;
     const email = document.getElementById("email").value;
 
-    fetch("/v1/user/register", {
+    fetch("/v1/user", {
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
         },
         "body": JSON.stringify({
+            "action": "register",
             "username": username,
             "password": password,
-            "email": email,
+            "email": email
         })
     })
     .then(function(response) {
         return response.json();
     })
     .then(function(data) {
-        alert(dafunction(book)ta.message);
+        alert(data.message);
         if (data.status === 0) {
             window.location.href = "/login.html";
         }
+
         else if (data.status === 1) {
             document.getElementById("username").value = "";
+        }
+
+        else if (data.status === 2) {
+            window.location.href = "/index.html";
         }
     })
     .catch(function(error) {

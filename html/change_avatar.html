@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>用户建议</title>
+    <title>修改头像</title>
     <link rel="icon" type="image/x-icon" href="/image/planet.png">
     <link rel="stylesheet" type="text/css" href="/css/mars.css">
 </head>
@@ -12,22 +12,14 @@
         <p style="font-size: 20px;">当前用户:<span id="username"></span></p>
         <a href="/index.html">返回主页</a>
         <div class="search-container">
-            <form id="suggest_form">
-                <label>请添加您的建议:</label>
-                <input type="text" id="content" required>
-                <button type="submit">添加</button>
+            <form id="avatar_upload_form" enctype="multipart/form-data">
+                <input type="file" name="file" accept="*/*" required>
+                <button type="submit">上传</button>
             </form>
         </div>
-        <table class="result-table" id="suggestion_table">
-            <thead>
-                <tr><th>用户</th><th>建议</th></tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <p style="font-size: 20px;" id="strawberry"></p>
     </div>
 
     <script type="text/javascript" src="/js/username.js"></script>
-    <script type="text/javascript" src="/js/user_suggest.js"></script>
+    <script type="text/javascript" src="/js/change_avatar.js"></script>
 </body>
 </html>

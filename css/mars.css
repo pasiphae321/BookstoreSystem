@@ -1,17 +1,29 @@
-body {
+body, html {
+    height: 100%;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
     font-family: Arial, sans-serif;
+    background-image: url("/image/background3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
 .container {
     text-align: center;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .search-container {
     margin-bottom: 20px;
 }
+
 .result-table {
     margin-top: 20px;
     border-collapse: collapse;
@@ -20,9 +32,11 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
 .result-table, .result-table th, .result-table td {
     border: 1px solid black;
 }
+
 .result-table th, .result-table td {
     padding: 8px;
     text-align: left;

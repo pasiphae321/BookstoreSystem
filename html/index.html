@@ -9,14 +9,22 @@
 </head>
 <body>
     <div class="centered">
-        <h3>欢迎您,<span id="username"></span></h3>
+        <img alt="头像" title="头像" width="160" height="160" id="avatar" src="">
+        <p style="font-size: 20px;">欢迎您，<span id="username"></span></p>
         <a href="/v1/user/logout" id="link_one">登出</a>
+        <a href="/old/ssrf.php">SSRF漏洞</a>
+        <br>
+        <a href="/old/book_search.php">书籍查询(旧)</a>
         <a href="/book_search.html">书籍查询</a>
         <a href="/change_password.html">修改密码</a>
+        <br>
+        <a href="/old/user_suggest.php">用户建议(旧)</a>
         <a href="/user_suggest.html">用户建议</a>
+        <a href="/change_avatar.html">修改头像</a>
     </div>
 
     <script type="text/javascript" src="/js/username.js"></script>
+    <script type="text/javascript">document.getElementById("avatar").src = `/v1/user/avatar?username=${username}`;</script>
     <script type="text/javascript" src="/js/logout.js"></script>
 </body>
 </html>

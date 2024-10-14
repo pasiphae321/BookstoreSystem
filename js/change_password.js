@@ -16,6 +16,9 @@ document.getElementById("password_form").addEventListener("submit", function(eve
     })
     .then(function(data) {
         alert(data.message);
+        if (data.status === 8) {
+            window.location.href = "/login.html";
+        }
     })
     .catch(function(error) {
         console.log(error);

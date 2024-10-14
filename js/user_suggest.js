@@ -1,20 +1,20 @@
 function GetSuggestions() {
-    fetch("/v1/suggestion/fetch")
+    fetch("/v1/suggestion")
     .then(function(response) {
         return response.json();
     })
     .then(function(data) {
-        const strawberry = document.getElementById("strawberry");
-        const TableBody = document.getElementById("suggestion_table").getElementsByTagName("tbody")[0];
+        strawberry = document.getElementById("strawberry");
+        TableBody = document.getElementById("suggestion_table").getElementsByTagName("tbody")[0];
         if (data.status === 0) {
             strawberry.textContent = "";
             TableBody.innerHTML = "";
             data.result.forEach(function(suggestion1) {
-                const row = document.createElement("tr");
-                const UsernameCell = document.createElement("td");
+                row = document.createElement("tr");
+                UsernameCell = document.createElement("td");
                 UsernameCell.textContent = suggestion1.username;
                 row.appendChild(UsernameCell);
-                const ContentCell = document.createElement("td");
+                ContentCell = document.createElement("td");
                 ContentCell.textContent = suggestion1.content;
                 row.appendChild(ContentCell);
                 TableBody.appendChild(row);
@@ -33,9 +33,9 @@ function GetSuggestions() {
 GetSuggestions();
 document.getElementById("suggest_form").addEventListener("submit", function(event) {
     event.preventDefault();
-    const suggestion = document.getElementById("content").value;
+    const content = document.getElementById("content").value;
 
-    fetch("/v1/suggestion/add", {
+    fetch("/v1/suggestion", {
         "method": "POST",
         "headers": {
             "Content-Type": "application/json"
@@ -51,6 +51,9 @@ document.getElementById("suggest_form").addEventListener("submit", function(even
         alert(data.message);
         if (data.status === 0) {
             GetSuggestions();
+        }
+        else if (data.status === 8) {
+            window.location.href = "/login.html";
         }
     })
     .catch(function(error) {
