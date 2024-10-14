@@ -41,3 +41,7 @@ sudo ./BookstoreSystem/initialize.sh
 ![这里有一个图片](https://callisto.oss-cn-chengdu.aliyuncs.com/images/bookstore_system/2.png)
 
 书籍搜索页面
+
+![这里有一个图片](https://callisto.oss-cn-chengdu.aliyuncs.com/images/bookstore_system/3.png)
+
+
