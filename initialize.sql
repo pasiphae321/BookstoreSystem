@@ -41,3 +41,6 @@ insert into `bookstore_system`.`suggestion`(`user_id`, `content`) values
 	(2, '11111111111'),
 	(3, '22222222222222222222222');
 
+create user 'bookstore_operator'@'127.0.0.1' identified by '1qazbook2wsx';
+grant insert, delete, update, select on `bookstore_system`.* to 'bookstore_operator'@'127.0.0.1';
+flush privileges;
