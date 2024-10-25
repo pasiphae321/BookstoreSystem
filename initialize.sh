@@ -3,7 +3,7 @@
 apt update;
 apt install nginx php php-fpm mysql-server redis curl php-mysql php-redis php-curl;
 mkdir /var/www/html/BookstoreSystem;
-cp -r ./css ./html ./image ./v1 ./js ./image ./old ./upload /var/www/html/BookstoreSystem;
+cp -r ./css ./html ./image ./v1 ./js ./old ./upload /var/www/html/BookstoreSystem;
 chown www-data:www-data /var/www/html/BookstoreSystem/upload;
 rm /etc/nginx/sites-enabled/default && cp ./BookstoreSystemForNginx.conf /etc/nginx/sites-enabled;
 mysql < ./initialize.sql;
